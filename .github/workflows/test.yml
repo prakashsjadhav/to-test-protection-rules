@@ -1,0 +1,19 @@
+name: Priviosn infra
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        description: 'The environment to deploy to'
+
+jobs:
+  provision-infra:
+    runs-on: ubuntu-18.04
+    environment:
+      name: ${{ github.event.inputs.environment }}
+    name: Provision infra
+    permissions:
+      id-token: write
+      contents: read
+      packages: write
